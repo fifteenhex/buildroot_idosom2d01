@@ -1,0 +1,86 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+
+- name: restore-cache
+  image: drillster/drone-volume-cache
+  volumes:
+  - name: cache
+    path: /cache
+  settings:
+    restore: true
+    mount:
+      - ./dl
+
+- name: createimage
+  image: docker:latest
+  volumes:
+  - name: docker_sock
+    path: /var/run/docker.sock
+  commands:
+  - ls -l ./
+  - ls -l /var/run/
+  - docker build -t gw302_buildroot .
+  - chmod -R o+rw ./
+
+- name: bootstrap
+  image: gw302_buildroot
+  pull: if-not-exists
+  commands:
+  - make bootstrap
+
+- name: download
+  image: gw302_buildroot
+  pull: if-not-exists
+  commands:
+  - make buildroot-dl
+
+- name: rebuild-cache
+  image: drillster/drone-volume-cache
+  volumes:
+  - name: cache
+    path: /cache
+  settings:
+    rebuild: true
+    mount:
+      - ./dl
+
+- name: main
+  image: gw302_buildroot
+  pull: if-not-exists
+  commands:
+  - make
+  - ls outputs/
+
+- name: toolchain
+  image: gw302_buildroot
+  pull: if-not-exists
+  commands:
+  - make buildroot-toolchain
+  - ls outputs/
+
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: deploy_key
+    files:
+      - outputs/*
+    checksum:
+      - sha256
+      - sha512
+  when:
+    event: tag
+
+volumes:
+  - name: cache
+    host: 
+      path: /tmp/cache
+  - name: docker_sock
+    host:
+      path: /var/run/docker.sock
+
+...

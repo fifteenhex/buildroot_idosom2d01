@@ -1,0 +1,9 @@
+[submodule "buildroot"]
+	path = buildroot
+	url = https://github.com/fifteenhex/buildroot.git
+[submodule "br2secretsauce"]
+	path = br2secretsauce
+	url = https://github.com/fifteenhex/br2secretsauce.git
+[submodule "br2autosshkey"]
+	path = br2autosshkey
+	url = https://github.com/fifteenhex/br2autosshkey.git

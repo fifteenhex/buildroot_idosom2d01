@@ -14,6 +14,8 @@ bootstrap.stamp:
 ./br2secretsauce/common.mk: bootstrap.stamp
 ./br2secretsauce/rescue.mk: bootstrap.stamp
 
+bootstrap: bootstrap.stamp
+
 include ./br2secretsauce/common.mk
 include ./br2secretsauce/rescue.mk
 

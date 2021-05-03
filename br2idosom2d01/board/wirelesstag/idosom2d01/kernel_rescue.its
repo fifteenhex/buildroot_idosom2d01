@@ -33,6 +33,32 @@
 				algo = "sha1";
 			};
 		};
+		fdt@1 {
+			data = /incbin/("../../images/mstar-infinity2m-ssd202d-som2d01.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			load = <0x22d00000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
+		fdt@2 {
+			data = /incbin/("../../images/mstar-infinity2m-ssd202d-sbc2d70.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			load = <0x22d00000>;
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
 		ramdisk@0 {
 			data = /incbin/("../../images/rootfs.cpio.lz4");
 			type = "ramdisk";
@@ -54,6 +80,16 @@
 		ssd201-som2d01 {
 			kernel = "kernel@0";
 			fdt = "fdt@0";
+			ramdisk = "ramdisk@0";
+		};
+		ssd202d-som2d01 {
+			kernel = "kernel@0";
+			fdt = "fdt@1";
+			ramdisk = "ramdisk@0";
+		};
+		ssd202d-sbc2d70 {
+			kernel = "kernel@0";
+			fdt = "fdt@2";
 			ramdisk = "ramdisk@0";
 		};
 	};

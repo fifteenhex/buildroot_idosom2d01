@@ -6,12 +6,13 @@ TOOLCHAIN = arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz
 
 all: buildroot buildroot-rescue copy_outputs
 
-bootstrap:
+bootstrap.stamp:
 	git submodule init
 	git submodule update
+	touch bootstrap.stamp
 
-./br2secretsauce/common.mk: bootstrap
-./br2secretsauce/rescue.mk: bootstrap
+./br2secretsauce/common.mk: bootstrap.stamp
+./br2secretsauce/rescue.mk: bootstrap.stamp
 
 include ./br2secretsauce/common.mk
 include ./br2secretsauce/rescue.mk

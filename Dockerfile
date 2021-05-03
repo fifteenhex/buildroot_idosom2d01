@@ -10,6 +10,5 @@ RUN apt-get -qq install build-essential \
 			unzip \
 			rsync \
 			bc \
-			git \
-			libssl-dev
+			git
 USER notroot

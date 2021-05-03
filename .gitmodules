@@ -7,3 +7,6 @@
 [submodule "br2autosshkey"]
 	path = br2autosshkey
 	url = https://github.com/fifteenhex/br2autosshkey.git
+[submodule "buildroot_rescue"]
+	path = buildroot_rescue
+	url = https://github.com/fifteenhex/buildroot.git

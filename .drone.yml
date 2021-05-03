@@ -37,6 +37,7 @@ steps:
   pull: if-not-exists
   commands:
   - make buildroot-dl
+  - make buildroot-rescue-dl
 
 - name: rebuild-cache
   image: drillster/drone-volume-cache

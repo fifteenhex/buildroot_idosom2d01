@@ -23,17 +23,17 @@ steps:
   commands:
   - ls -l ./
   - ls -l /var/run/
-  - docker build -t gw302_buildroot .
+  - docker build -t ido_builder .
   - chmod -R o+rw ./
 
 - name: bootstrap
-  image: gw302_buildroot
+  image: ido_builder
   pull: if-not-exists
   commands:
   - make bootstrap
 
 - name: download
-  image: gw302_buildroot
+  image: ido_builder
   pull: if-not-exists
   commands:
   - make buildroot-dl
@@ -50,14 +50,14 @@ steps:
       - ./dl
 
 - name: main
-  image: gw302_buildroot
+  image: ido_builder
   pull: if-not-exists
   commands:
   - make
   - ls outputs/
 
 - name: toolchain
-  image: gw302_buildroot
+  image: ido_builder
   pull: if-not-exists
   commands:
   - make buildroot-toolchain

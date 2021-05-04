@@ -39,4 +39,18 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   Depending on your serial interface you might be able to increase the baud rate
   used during the transfer.
 
-- ** Instructions for rescue image here **
+  Eitherway, you should now be booted in a Linux environment where you can
+  finish off flashing the required images.
+
+### Using the rescue image to complete flashing
+
+  - First we need to create the UBI partitions
+  ```
+  ubiformat /dev/mtd1
+  ubiattach -m 1
+  ubimkvol /dev/ubi0 -N uboot  -s 1MiB	-t static
+  ubimkvol /dev/ubi0 -N env    -s 256KiB
+  ubimkvol /dev/ubi0 -N kernel -s 16MiB
+  ubimkvol /dev/ubi0 -N rescue -s 16MiB
+  ubimkvol /dev/ubi0 -N rootfs -s 64MiB
+  ```

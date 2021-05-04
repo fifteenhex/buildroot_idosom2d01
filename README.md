@@ -39,12 +39,18 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   Depending on your serial interface you might be able to increase the baud rate
   used during the transfer.
 
+  If you are really lucky something like this might work:
+
+  ```
+  setenv loadaddr 0x22000000; loady 0x22000000 460800; bootm
+  ```
+
   Eitherway, you should now be booted in a Linux environment where you can
   finish off flashing the required images.
 
 ### Using the rescue image to complete flashing
 
-  - First we need to create the UBI partitions
+- First we need to create the UBI partitions
   ```
   ubiformat /dev/mtd1
   ubiattach -m 1
@@ -53,4 +59,25 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   ubimkvol /dev/ubi0 -N kernel -s 16MiB
   ubimkvol /dev/ubi0 -N rescue -s 16MiB
   ubimkvol /dev/ubi0 -N rootfs -s 64MiB
+  ```
+- Now we should pull the rescue image and load it into the rescue partition.
+  If something goes wrong once we have the rescue image in the flash it's a lot
+  easier to progress. Especially if you are using serial.
+
+  ** tftp instructions here **
+
+  - For serial run `rz` and then send `idosom2d01-kernel-rescue.fit`.
+  - Now run:
+
+  ```
+  ubiupdatevol /dev/ubi0_3 idosom2d01-kernel-rescue.fit
+  ```
+
+- Next we should pull the u-boot image and flash it.
+
+  - For serial run `rz` and then send ``.
+  - Now run:
+
+  ```
+  ubiupdatevol /dev/ubi0_0 idosom2d01-u-boot.img
   ```

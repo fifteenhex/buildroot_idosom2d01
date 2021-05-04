@@ -19,7 +19,24 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   over serial. The first time you boot you need to send u-boot with ymodem.
 
 - Now we need to format the part of the flash we'll use for the UBI
-  partitions. `kernel-rescue.fit` is a micro system with a kernel and just
+  partitions. `idosom2d01-kernel-rescue.fit` is a micro system with a kernel and just
   enough userland to setup the flash.
+
+- If you board has ethernet you can put `idosom2d01-kernel-rescue.fit` onto a TFTP server
+  somewhere and load it via ethernet.
+
+  ```
+  setenv loadaddr 0x22000000; dhcp 192.168.3.235:idosom2d01-kernel-rescue.fit; bootm
+  ```
+
+- If you don't have ethernet you can load over serial with ymodem. This will be insanely
+  slow though so only do this as last resort.
+
+  ```
+  setenv loadaddr 0x22000000; loady; bootm
+  ```
+
+  Depending on your serial interface you might be able to increase the baud rate
+  used during the transfer.
 
 - ** Instructions for rescue image here **

@@ -13,6 +13,10 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   the i2c interface to write SPI NOR but it cannot do SPI NAND yet so there
   is no alternative right now.
 
+  - See [here](http://linux-chenxing.org/infinity2/ido-som2d01/#flashing) for information on this.
+  - Note that the u-boot SPL is currently called `idosom2d01-ipl`. At some point the u-boot SPL will
+    replace the vendor IPL blob.
+
 - The main u-boot binary here lives in a UBI partition so that bad block
   recovery etc actually works. You can't do the UBI setup with the ISP tool.
   This is fine. The u-boot SPL is capable of loading the main u-boot binary

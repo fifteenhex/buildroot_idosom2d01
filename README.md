@@ -79,9 +79,33 @@ This is a buildroot setup for the various ido-som2d01 based boards.
 
 - Next we should pull the u-boot image and flash it.
 
-  - For serial run `rz` and then send ``.
+  - For serial run `rz` and then send `idosom2d01-u-boot.img`.
   - Now run:
 
   ```
   ubiupdatevol /dev/ubi0_0 idosom2d01-u-boot.img
   ```
+
+- At this point your module should be able to boot into u-boot directly
+  without needing serial and you should be able to boot back into the resuce
+  setup by running:
+
+  ```
+  setenv loadaddr 0x22000000; ubi readvol ${loadaddr} rescue 0x800000; bootm
+  ```
+
+- Now lets get the kernel and rootfs images
+  - For serial run `rz` and then send `idosom2d01-kernel.fit` and `idosom2d01-rootfs.squashfs`
+  - Now run:
+
+  ```
+  ubiupdatevol /dev/ubi0_2 idosom2d01-kernel.fit
+  ubiupdatevol /dev/ubi0_4 idosom2d01-rootfs.squashfs
+  ```
+
+- Now everything is flashed, you should be able to boot the normal kernel with a
+  more feature rich rootfs. The supplied rootfs is a read only squashfs. If you
+  want to use ubifs for a read/write filesystem you can do that but it won't be
+  detailed here.
+
+- Have fun!

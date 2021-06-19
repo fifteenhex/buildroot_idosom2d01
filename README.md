@@ -52,6 +52,22 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   Eitherway, you should now be booted in a Linux environment where you can
   finish off flashing the required images.
 
+## Notes for SBC2D06
+
+To write the GCIS, IPL and u-boot SPL on the module on the SBC2D06 you need to move
+the jumpers.
+
+This is the position for using the usb port for serial:
+
+![Jumpers for usb serial](sbc02d06_jumpers_flashing.jpg)
+
+This is the position for using the ISP connector for flashing.
+
+![Jumpers for flashing](sbc02d06_jumpers_usb_serial.jpg)
+
+You need to move the jumpers into the flashing position when using the the ISP tool
+and back again when you need to access the serial console.
+
 ### Using the rescue image to complete flashing
 
 - First we need to create the UBI partitions

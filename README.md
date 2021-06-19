@@ -74,11 +74,11 @@ and back again when you need to access the serial console.
   ```
   ubiformat /dev/mtd1
   ubiattach -m 1
-  ubimkvol /dev/ubi0 -N uboot  -s 1MiB	-t static
-  ubimkvol /dev/ubi0 -N env    -s 256KiB
+  ubimkvol /dev/ubi0 -N uboot -s 1MiB -t static
+  ubimkvol /dev/ubi0 -N env -s 256KiB
   ubimkvol /dev/ubi0 -N kernel -s 16MiB
   ubimkvol /dev/ubi0 -N rescue -s 16MiB
-  ubimkvol /dev/ubi0 -N rootfs -s 64MiB
+  ubimkvol /dev/ubi0 -N rootfs -m
   ```
 - Now we should pull the rescue image and load it into the rescue partition.
   If something goes wrong once we have the rescue image in the flash it's a lot

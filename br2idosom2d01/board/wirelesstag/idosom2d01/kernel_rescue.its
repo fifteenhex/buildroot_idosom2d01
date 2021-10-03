@@ -56,6 +56,18 @@
 				algo = "sha1";
 			};
 		};
+		fdt@3 {
+			data = /incbin/("../../images/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash@1 {
+				algo = "crc32";
+			};
+			hash@2 {
+				algo = "sha1";
+			};
+		};
 		ramdisk@0 {
 			data = /incbin/("../../images/rootfs.cpio.lz4");
 			type = "ramdisk";
@@ -87,6 +99,10 @@
 			kernel = "kernel@0";
 			fdt = "fdt@2";
 			ramdisk = "ramdisk@0";
+		};
+		ssd202d-sbc2d06 {
+			kernel = "kernel@0";
+			fdt = "fdt@3";
 		};
 	};
 };

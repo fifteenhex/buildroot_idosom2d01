@@ -4,7 +4,7 @@ DEFCONFIG_RESCUE = ../br2idosom2d01/configs/idosom2d01_rescue_defconfig
 EXTERNALS +=../br2autosshkey ../br2idosom2d01
 TOOLCHAIN = arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz
 
-all: buildroot buildroot-rescue copy_outputs
+all: buildroot-dl buildroot buildroot-rescue copy_outputs
 
 bootstrap.stamp:
 	git submodule init

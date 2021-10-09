@@ -25,3 +25,10 @@ copy_outputs:
 	cp buildroot/output/images/kernel.fit $(OUTPUTS)/idosom2d01-kernel.fit
 	cp buildroot/output/images/rootfs.squashfs $(OUTPUTS)/idosom2d01-rootfs.squashfs
 	cp buildroot_rescue/output/images/kernel-rescue.fit $(OUTPUTS)/idosom2d01-kernel-rescue.fit
+
+upload:
+	$(call upload_to_tftp,$(BUILDROOT_PATH)/output/images/ipl)
+	$(call upload_to_tftp,$(BUILDROOT_PATH)/output/images/u-boot.img)
+	$(call upload_to_tftp,$(BUILDROOT_PATH)/output/images/kernel.fit)
+	$(call upload_to_tftp,$(BUILDROOT_PATH)/output/images/rootfs.squashfs)
+	$(call upload_to_tftp,$(BUILDROOT_PATH)/output/images/kernel-rescue.fit)

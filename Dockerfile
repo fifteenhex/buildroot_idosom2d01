@@ -10,5 +10,6 @@ RUN apt-get -qq install build-essential \
 			unzip \
 			rsync \
 			bc \
-			git
+			git \
+			tftp-hpa
 USER notroot

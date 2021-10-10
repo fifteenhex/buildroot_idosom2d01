@@ -26,6 +26,15 @@ steps:
   - docker build -t ido_builder .
   - chmod -R o+rw ./
 
+- name: secrets
+  image: ido_builder
+  pull: if-not-exists
+  environment:
+    SSH_KEY:
+      from_secret: tftp_ssh_key
+  commands:
+    - mkdir ./secrets/ && echo "$SSH_KEY" > ./secrets/tftp_ssh_key && chmod 0600 ./secrets/tftp_ssh_key
+
 - name: bootstrap
   image: ido_builder
   pull: if-not-exists

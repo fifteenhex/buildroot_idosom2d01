@@ -52,6 +52,9 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   Eitherway, you should now be booted in a Linux environment where you can
   finish off flashing the required images.
 
+  Note for SSD202D modules you must use `bootm ${loadaddr}#ssd202d-som2d01`
+  to use the SSD202D device tree otherwise the kernel locks up at boot.
+
 ## Notes for SBC2D06
 
 To write the GCIS, IPL and u-boot SPL on the module on the SBC2D06 you need to move

@@ -18,6 +18,7 @@ steps:
     # filesystem_cache_root: "/tmp/cache"
     mount:
       - 'dl'
+      - 'ccache'
   volumes:
   - name: cache
     path: /tmp/cache
@@ -76,6 +77,20 @@ steps:
   - make
   - ls outputs/
 
+- name: cache-ccache
+  image: meltwater/drone-cache:latest
+  pull: true
+  settings:
+    backend: "filesystem"
+    rebuild: true
+    cache_key: "volume"
+    filesystem_cache_root: "/var/lib/drone/cache"
+    mount:
+      - 'ccache'
+  volumes:
+  - name: cache
+    path: /var/lib/drone/cache
+
 - name: toolchain
   image: ido_builder
   pull: if-not-exists
@@ -99,7 +114,7 @@ steps:
 volumes:
   - name: cache
     host: 
-      path: /tmp/cache
+      path: /var/lib/drone/cache
   - name: docker_sock
     host:
       path: /var/run/docker.sock

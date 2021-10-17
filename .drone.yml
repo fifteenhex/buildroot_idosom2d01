@@ -8,15 +8,19 @@ platform:
 
 steps:
 
-- name: restore-cache
-  image: drillster/drone-volume-cache
+- name: restore-cache-with-filesystem
+  image: meltwater/drone-cache:latest
+  pull: true
+  settings:
+    backend: "filesystem"
+    restore: true
+    cache_key: "volume"
+    # filesystem_cache_root: "/tmp/cache"
+    mount:
+      - 'dl'
   volumes:
   - name: cache
-    path: /cache
-  settings:
-    restore: true
-    mount:
-      - ./dl
+    path: /tmp/cache
 
 - name: createimage
   image: docker:latest
@@ -51,15 +55,19 @@ steps:
   - make buildroot-dl
   - make buildroot-rescue-dl
 
-- name: rebuild-cache
-  image: drillster/drone-volume-cache
+- name: rebuild-cache-with-filesystem
+  image: meltwater/drone-cache:latest
+  pull: true
+  settings:
+    backend: "filesystem"
+    rebuild: true
+    cache_key: "volume"
+    # filesystem_cache_root: "/tmp/cache"
+    mount:
+      - 'dl'
   volumes:
   - name: cache
-    path: /cache
-  settings:
-    rebuild: true
-    mount:
-      - ./dl
+    path: /tmp/cache
 
 - name: main
   image: ido_builder

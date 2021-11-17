@@ -10,3 +10,6 @@
 [submodule "buildroot_rescue"]
 	path = buildroot_rescue
 	url = https://github.com/fifteenhex/buildroot.git
+[submodule "br2lvgl"]
+	path = br2lvgl
+	url = https://github.com/fifteenhex/br2lvgl.git

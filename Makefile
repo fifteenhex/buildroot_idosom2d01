@@ -1,7 +1,7 @@
 PREFIX = idosom2d01
 DEFCONFIG = ../br2idosom2d01/configs/idosom2d01_defconfig
 DEFCONFIG_RESCUE = ../br2idosom2d01/configs/idosom2d01_rescue_defconfig
-EXTERNALS +=../br2autosshkey ../br2idosom2d01
+EXTERNALS +=../br2autosshkey ../br2lvgl ../br2idosom2d01
 TOOLCHAIN = arm-buildroot-linux-gnueabihf_sdk-buildroot.tar.gz
 
 all: buildroot-dl buildroot buildroot-rescue copy_outputs upload

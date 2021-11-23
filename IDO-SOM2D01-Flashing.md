@@ -53,6 +53,7 @@ https://item.taobao.com/item.htm?id=631665290641
 ![USBFlashTool](images/SigmaStarDebugTool.png)
 
 Tools and files needed for this tutorial can be downloaded from manufacturer documentation site
+
 http://doc.industio.com/docs/ssd20x_manual/ssd20x_manual-1cradqrvf230l
 
 When you open ISP Flash Tool 5.0.0.x you will get warning if tool is not inserted in USB on PC
@@ -60,15 +61,15 @@ When you open ISP Flash Tool 5.0.0.x you will get warning if tool is not inserte
 ![FlashTool](images/SigmaStarDebugTool-Error.png)
 
 So I suggest opening tool after USB Debug Tool is plugged in
-
 When you open ISP Flash Tool
-![FlashTool](images/SigmaStarDebugToolApp.png)
+![FlashToolOpened](images/SigmaStarDebugToolApp.png)
+
 You will have status bar with I2C: (92, B2), USB 402Khz (or similar) at bottom what means all is ready
 
 After that you can press `Connect` and status windows should change as below
 ![FlashTool](images/SigmaStarDebugToolApp-Connected.png)
 
-### Flashing GCIS.bin
+## Flashing GCIS.bin
 Next we can choose 1st file to flash module and that is `GCIS.bin` that can be found in SpinandPackBinTool
 ![FlashTool](images/SigmaStarDebugToolApp-GCIS.png)
 
@@ -92,7 +93,7 @@ End time: 12:18:36
 ```
 With this 1st stage is done so we can continue to next step
 
-###Flashing IPL
+## Flashing IPL
 1) Select IPL.bin (21.9kB) that can be found in SpinandPackBinTool also
 2) Make sure that `Erase Device` is NOT checked 
 3) `Base shift at` should be changed to: `0x140000`
@@ -100,7 +101,7 @@ With this 1st stage is done so we can continue to next step
 
 ![FlashTool](images/SigmaStarDebugToolApp-IPL.png)
 
-###Flashing idosom2d01-ipl.bin
+## Flashing idosom2d01-ipl.bin
 This is uBoot SPL that is called `idosom2d01-ipl` in outputs folder and need to add extension `.bin` so tool can burn it
 
 1) Select idosom2d01-ipl.bin (40-50kB) that can be found in Github release section or build your own
@@ -110,7 +111,7 @@ This is uBoot SPL that is called `idosom2d01-ipl` in outputs folder and need to 
 
 ![FlashTool](images/SigmaStarDebugToolApp-uBoot-IPL.png)
 
-##Next steps
+## Next steps
 
 Now you can disconnect and reboot your module that should boot into uBoot emergency loader from UART
 ```
@@ -190,7 +191,7 @@ Trying to boot from UART
 C
 ```
 
-####You need to send idosom2d01-u-boot.img via serial
+## You need to send idosom2d01-u-boot.img via serial
 I've using minicom on Linux with following steps (if can't run normally try with sudo minicom -s)
 After Trying to boot from UART message in minicom pres `Ctrl+A` then press `s`
 you will be prompted with popup where you need to select `ymodem` and then go all way top and press enter to get file dialog (here paste your file location will be easier then type all into) and press enter
@@ -258,9 +259,11 @@ setenv loadaddr 0x22000000; loady; bootm
 ```
 
 After this step you should be able to use rescue image to complete flashing
-- Note
-	If UART log stop loading or it looks like it is frozen just type few times `Enter` key and you should be presented with login screen
-    ```
+
+**Note**
+
+If UART log stop loading or it looks like it is frozen just type few times `Enter` key and you should be presented with login screen
+```
 Welcome to Buildroot                                                            
 buildroot login: 
 ```
@@ -279,15 +282,16 @@ ubimkvol /dev/ubi0 -N rootfs -m
 ```
 This should create 5 UBI partitions so we can work with them later
 
-###Flashing `uBoot`
+## Flashing `uBoot`
 We need to transfer idosom2d01-u-boot.img via `rz` (receive zModem file) similar to `yModem` as we done it on before
+
 For serial run rz and then send idosom2d01-u-boot.img
 Check Note section down for `tftp` solution if you have network up and running
 ```
 ubiupdatevol /dev/ubi0_0 idosom2d01-u-boot.img
 ```
 
-###Flashing `kernel-rescue`
+## Flashing `kernel-rescue`
 Transfer `idosom2d01-kernel-rescue.fit`
 For serial run rz and then send idosom2d01-kernel-rescue.fit
 ```
@@ -299,7 +303,7 @@ At this point your module should be able to boot into u-boot directly without ne
 setenv loadaddr 0x22000000; ubi readvol ${loadaddr} rescue 0x800000; bootm
 ```
 
-###Flashing `kernel` and `rootfs` (ubifs)
+## Flashing `kernel` and `rootfs` (ubifs)
 Transfer files `idosom2d01-kernel.fit` and `idosom2d01-rootfs.ubifs`
 
 If you have resterted board and booted into recovery you will need to run this before you can use `ubiupdatevol`
@@ -314,12 +318,14 @@ ubiupdatevol /dev/ubi0_2 idosom2d01-kernel.fit
 ubiupdatevol /dev/ubi0_4 idosom2d01-rootfs.ubifs
 ```
 
-####Note
-- If you have working network you can transfer all files with `tfpt` so you can use this
+## Note
+If you have working network you can transfer all files with `tfpt` so you can use this
+
 `tftp -g -r kernel.fit 192.168.1.xxx -b 65464`
+
 Change name and IP address to one where TFTP server is runnung and `-b 65464` can be removed but for me was increased transfer rate
 
-###Finishing touches
+## Finishing touches
 Now as tou can boot to uBoot you need to setup some commands for uBoot to be able to boot directly to Linux without need serial or uBoot
 
 ```

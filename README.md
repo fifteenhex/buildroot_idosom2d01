@@ -62,11 +62,11 @@ the jumpers.
 
 This is the position for using the usb port for serial:
 
-![Jumpers for flashing](sbc02d06_jumpers_usb_serial.jpg)
+![Jumpers for flashing](images/sbc02d06_jumpers_usb_serial.jpg)
 
 This is the position for using the ISP connector for flashing.
 
-![Jumpers for usb serial](sbc02d06_jumpers_flashing.jpg)
+![Jumpers for usb serial](images/sbc02d06_jumpers_flashing.jpg)
 
 You need to move the jumpers into the flashing position when using the the ISP tool
 and back again when you need to access the serial console.

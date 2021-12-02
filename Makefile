@@ -24,6 +24,7 @@ copy_outputs:
 	cp buildroot/output/images/u-boot.img $(OUTPUTS)/idosom2d01-u-boot.img
 	cp buildroot/output/images/kernel.fit $(OUTPUTS)/idosom2d01-kernel.fit
 	cp buildroot/output/images/rootfs.squashfs $(OUTPUTS)/idosom2d01-rootfs.squashfs
+	cp buildroot/output/images/rootfs.ubifs $(OUTPUTS)/idosom2d01-rootfs.ubifs
 	cp buildroot_rescue/output/images/kernel-rescue.fit $(OUTPUTS)/idosom2d01-kernel-rescue.fit
 
 upload:

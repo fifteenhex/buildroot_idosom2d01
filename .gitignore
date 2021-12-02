@@ -1,2 +1,4 @@
 *.stamp
 dl
+ccache
+outputs

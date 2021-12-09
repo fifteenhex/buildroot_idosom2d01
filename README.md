@@ -106,7 +106,7 @@ and back again when you need to access the serial console.
   ```
 
 - At this point your module should be able to boot into u-boot directly
-  without needing serial and you should be able to boot back into the resuce
+  without needing serial and you should be able to boot back into the rescue
   setup by running:
 
   ```
@@ -126,5 +126,10 @@ and back again when you need to access the serial console.
   more feature rich rootfs. The supplied rootfs is a read only squashfs. If you
   want to use ubifs for a read/write filesystem you can do that but it won't be
   detailed here.
+
+  ```
+  setenv bootargs console=ttyS0,115200 ubi.mtd=1 ubi.block=0,4 root=/dev/ubiblock0_4 clk_ignore_unused
+  setenv bootcmd 'setenv loadaddr 0x22000000; ubi readvol ${loadaddr} kernel 0x800000; bootm ${loadaddr}#<your board type>'
+  ```
 
 - Have fun!

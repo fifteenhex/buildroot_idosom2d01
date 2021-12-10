@@ -115,6 +115,12 @@ and back again when you need to access the serial console.
 
 - Now lets get the kernel and rootfs images
   - For serial run `rz` and then send `idosom2d01-kernel.fit` and `idosom2d01-rootfs.squashfs`
+  - For tftp something like:
+  ```
+  tftp -b 4096 -g -r idosom2d01-kernel.fit 192.168.3.235
+  tftp -b 4096 -g -r idosom2d01-rootfs.squashfs 192.168.3.235
+  ```
+
   - Now run:
 
   ```

@@ -46,7 +46,12 @@ This is a buildroot setup for the various ido-som2d01 based boards.
   If you are really lucky something like this might work:
 
   ```
-  setenv loadaddr 0x22000000; loady 0x22000000 460800; bootm
+  setenv loadaddr 0x22000000; loady ${loadaddr} 230400; bootm
+  ```
+  or
+
+  ```
+  setenv loadaddr 0x22000000; loady ${loadaddr} 460800; bootm
   ```
 
   Eitherway, you should now be booted in a Linux environment where you can

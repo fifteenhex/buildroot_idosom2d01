@@ -144,3 +144,12 @@ and back again when you need to access the serial console.
   ```
 
 - Have fun!
+
+
+## Appendix: Creating ubi layout in u-boot
+  ```
+  ubi createvol uboot 0x100000 static
+  ubi createvol env 0x40000
+  ubi createvol kernel 0x1000000
+  ubi createvol rescue 0x1000000
+  ```

@@ -152,4 +152,5 @@ and back again when you need to access the serial console.
   ubi createvol env 0x40000
   ubi createvol kernel 0x1000000
   ubi createvol rescue 0x1000000
+  ubi createvol rootfs -
   ```

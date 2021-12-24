@@ -10,5 +10,6 @@ RUN apt-get -qq update && apt-get -qq install build-essential \
 				rsync \
 				bc \
 				git \
-				tftp-hpa
+				tftp-hpa \
+				mtd-utils
 USER notroot

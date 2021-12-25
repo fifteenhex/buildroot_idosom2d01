@@ -5,7 +5,7 @@
 	#address-cells = <1>;
 
 	images {
-		kernel@0 {
+		kernel-0 {
 			data = /incbin/("../../images/zImage");
 			type = "kernel";
 			arch = "arm";
@@ -13,58 +13,58 @@
 			compression = "none";
 			load = <0x21800000>;
                         entry = <0x21800000>;
-			hash@1 {
+			hash-1 {
 				algo = "crc32";
 			};
-			hash@2 {
+			hash-2 {
 				algo = "sha1";
 			};
 		};
-		fdt@0 {
+		fdt-0 {
 			data = /incbin/("../../images/mstar-infinity2m-ssd201-som2d01.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";
-			hash@1 {
+			hash-1 {
 				algo = "crc32";
 			};
-			hash@2 {
+			hash-2 {
 				algo = "sha1";
 			};
 		};
-		fdt@1 {
+		fdt-1 {
 			data = /incbin/("../../images/mstar-infinity2m-ssd202d-som2d01.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";
-			hash@1 {
+			hash-1 {
 				algo = "crc32";
 			};
-			hash@2 {
+			hash-2 {
 				algo = "sha1";
 			};
 		};
-		fdt@2 {
+		fdt-2 {
 			data = /incbin/("../../images/mstar-infinity2m-ssd202d-sbc2d70.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";
-			hash@1 {
+			hash-1 {
 				algo = "crc32";
 			};
-			hash@2 {
+			hash-2 {
 				algo = "sha1";
 			};
 		};
-		fdt@3 {
+		fdt-3 {
 			data = /incbin/("../../images/mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";
-			hash@1 {
+			hash-1 {
 				algo = "crc32";
 			};
-			hash@2 {
+			hash-2 {
 				algo = "sha1";
 			};
 		};
@@ -73,20 +73,20 @@
 	configurations {
 		default = "ssd201-som2d01";
 		ssd201-som2d01 {
-			kernel = "kernel@0";
-			fdt = "fdt@0";
+			kernel = "kernel-0";
+			fdt = "fdt-0";
 		};
 		ssd202d-som2d01 {
-			kernel = "kernel@0";
-			fdt = "fdt@1";
+			kernel = "kernel-0";
+			fdt = "fdt-1";
 		};
 		ssd202d-sbc2d70 {
-			kernel = "kernel@0";
-			fdt = "fdt@2";
+			kernel = "kernel-0";
+			fdt = "fdt-2";
 		};
 		ssd202d-sbc2d06 {
-			kernel = "kernel@0";
-			fdt = "fdt@3";
+			kernel = "kernel-0";
+			fdt = "fdt-3";
 		};
 	};
 };

@@ -18,28 +18,27 @@ bootstrap: bootstrap.stamp
 
 include ./br2secretsauce/common.mk
 include ./br2secretsauce/rescue.mk
+include ./br2secretsauce/ubi.mk
 
-.PHONY: idosom2d01.ubi
+.PHONY: ubi.img
 
-idosom2d01.ubi:
-	echo	"[uboot-volume]\n"\
-		"\tmode=ubi\n"\
-		"\timage=buildroot/output/images/u-boot.img\n"\
-		"\tvol_id=0\n"\
-		"\tvol_size=1MiB\n"\
-		"\tvol_type=static\n"\
-		"\tvol_name=uboot\n"\
-		"\tvol_alignment=1\n"\
-		> ubinize.cfg.tmp
+ubi.img:
+	- rm ubinize.cfg.tmp
+	dd if=/dev/zero bs=1024 count=256 | tr '\000' '1' > env.img
+	$(call ubi-add-vol,0,uboot,1MiB,static,$(BUILDROOT_PATH)/output/images/u-boot.img)
+	$(call ubi-add-vol,1,env,256KiB,static,env.img)
+	$(call ubi-add-vol,2,rescue,16MiB,static,$(BUILDROOT_RESCUE_PATH)/output/images/kernel-rescue.fit)
+	$(call ubi-add-vol,3,kernel,16MiB,static,$(BUILDROOT_PATH)/output/images/kernel.fit)
+	$(call ubi-add-vol,4,rootfs,64MiB,dynamic,$(BUILDROOT_PATH)/output/images/rootfs.squashfs)
 	/usr/sbin/ubinize -o $@ -p 128KiB -m 2048 -s 2048 ubinize.cfg.tmp
 
-copy_outputs: idosom2d01.ubi
+copy_outputs: ubi.img
 	cp buildroot/output/images/ipl $(OUTPUTS)/idosom2d01-ipl
 	cp buildroot/output/images/u-boot.img $(OUTPUTS)/idosom2d01-u-boot.img
 	cp buildroot/output/images/kernel.fit $(OUTPUTS)/idosom2d01-kernel.fit
 	cp buildroot/output/images/rootfs.squashfs $(OUTPUTS)/idosom2d01-rootfs.squashfs
 	cp buildroot_rescue/output/images/kernel-rescue.fit $(OUTPUTS)/idosom2d01-kernel-rescue.fit
-	cp idosom2d01.ubi $(OUTPUTS)/idosom2d01.ubi
+	$(call copy_to_outputs, ubi.img)
 
 upload:
 	$(call upload_to_tftp_with_scp,$(BUILDROOT_PATH)/output/images/ipl)

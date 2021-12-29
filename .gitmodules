@@ -10,3 +10,6 @@
 [submodule "buildroot_rescue"]
 	path = buildroot_rescue
 	url = https://github.com/fifteenhex/buildroot.git
+[submodule "br2chenxing"]
+	path = br2chenxing
+	url = https://github.com/linux-chenxing/br2chenxing.git

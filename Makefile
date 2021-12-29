@@ -13,6 +13,7 @@ bootstrap.stamp:
 
 ./br2secretsauce/common.mk: bootstrap.stamp
 ./br2secretsauce/rescue.mk: bootstrap.stamp
+./br2secretsauce/ubi.mk: bootstrap.stamp
 
 bootstrap: bootstrap.stamp
 

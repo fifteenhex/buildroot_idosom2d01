@@ -23,7 +23,7 @@ BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(BR2_EXTERNAL_IDOSOM2D01_PATH)/board/wirelesstag/idosom2d01/linux.config"
 BR2_LINUX_KERNEL_XZ=y
 BR2_LINUX_KERNEL_DTS_SUPPORT=y
-BR2_LINUX_KERNEL_INTREE_DTS_NAME="mstar-infinity2m-ssd201-som2d01 mstar-infinity2m-ssd202d-som2d01 mstar-infinity2m-ssd202d-sbc2d70 mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w"
+BR2_LINUX_KERNEL_INTREE_DTS_NAME="mstar-infinity2m-ssd201-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-sbc2d70 mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w"
 BR2_PACKAGE_ALSA_UTILS=y
 # BR2_PACKAGE_ALSA_UTILS_ALSACTL is not set
 BR2_PACKAGE_MTD=y
@@ -79,4 +79,3 @@ BR2_PACKAGE_HOST_UBOOT_TOOLS_FIT_SIGNATURE_SUPPORT=y
 BR2_PACKAGE_AUTOSSHKEY=y
 BR2_PACKAGE_AUTOSSHKEY_USERS="idosom2d01"
 BR2_PACKAGE_AUTOSSHKEY_SUDOUSERS="idosom2d01"
-BR2_PACKAGE_HOST_SNANDER=y

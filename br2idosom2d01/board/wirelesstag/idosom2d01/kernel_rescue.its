@@ -21,7 +21,7 @@
 			};
 		};
 		fdt-0 {
-			data = /incbin/("../../images/mstar-infinity2m-ssd201-som2d01.dtb");
+			data = /incbin/("../../images/mstar-infinity2m-ssd201-wirelesstag-ido-som2d01.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";
@@ -33,7 +33,7 @@
 			};
 		};
 		fdt-1 {
-			data = /incbin/("../../images/mstar-infinity2m-ssd202d-som2d01.dtb");
+			data = /incbin/("../../images/mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01.dtb");
 			type = "flat_dt";
 			arch = "arm";
 			compression = "none";

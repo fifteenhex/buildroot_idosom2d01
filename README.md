@@ -1,5 +1,7 @@
 # buildroot_ido-som2d01
 
+![status-badge](https://woodpecker.thingy.jp/api/badges/fifteenhex/buildroot_idosom2d01/status.svg)
+
 Buildroot for ido-som2d01 based boards.
 
 ## Wha?

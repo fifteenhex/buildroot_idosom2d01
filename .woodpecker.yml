@@ -1,0 +1,40 @@
+---
+platform: linux/arm64
+
+pipeline:
+  createimage:
+    image: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - ls -l ./
+      - ls -l /var/run/
+      - docker build -t idosom_buildbot .
+      - chmod -R o+rw ./
+
+# Boot strap
+  bootstrap:
+    image: idosom_buildbot
+    commands:
+      - make bootstrap
+
+# DL
+  dl:
+    image: idosom_buildbot
+    volumes:
+      - /var/local/ci_cache/buildroot_dl:/var/local/ci_cache/buildroot_dl
+    commands:
+      - ln -s /var/local/ci_cache/buildroot_dl dl
+      - make buildroot-dl
+
+# do it!
+  build:
+    image: idosom_buildbot
+    volumes:
+      - /var/local/ci_cache/buildroot_dl:/var/local/ci_cache/buildroot_dl
+    commands:
+      - make
+
+## HERE IMAGES SHOULD BE UPLOADED
+
+...

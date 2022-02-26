@@ -32,7 +32,9 @@ pipeline:
     image: idosom_buildbot
     volumes:
       - /var/local/ci_cache/buildroot_dl:/var/local/ci_cache/buildroot_dl
+      - /var/local/ci_cache/ccache:/var/local/ci_cache/ccache
     commands:
+      - ln -s /var/local/ci_cache/ccache ccache
       - make
 
 ## HERE IMAGES SHOULD BE UPLOADED

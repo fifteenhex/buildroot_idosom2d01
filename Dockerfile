@@ -17,4 +17,5 @@ RUN apt-get -qq update && apt-get -qq install \
 	libssl-dev \
 	libyaml-dev \
 	gcc-arm-linux-gnueabihf \
-	u-boot-tools
+	u-boot-tools \
+	mtd-utils

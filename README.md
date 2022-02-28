@@ -28,9 +28,10 @@ of binaries that you can work from.
     replace the vendor IPL blob.
 
 - The main u-boot binary here lives in a UBI partition so that bad block
-  recovery etc actually works. You can't do the UBI setup with the ISP tool.
-  This is fine. The u-boot SPL is capable of loading the main u-boot binary
-  over serial. The first time you boot you need to send u-boot with ymodem.
+  recovery etc actually works. Loading the UBI partition data with the ISP tool
+  is very very slow so you don't to do that. The u-boot SPL is capable of loading
+  the main u-boot binary over serial. The first time you boot you need to send u-boot with ymodem.
+  This should be a lot faster than trying to flash the UBI partition via the ISP tool.
 
 - Now we need to format the part of the flash we'll use for the UBI
   partitions. `idosom2d01-kernel-rescue.fit` is a micro system with a kernel and just

@@ -8,6 +8,14 @@ Buildroot for ido-som2d01 based boards.
 
 This is a buildroot setup for the various ido-som2d01 based boards.
 
+- The som2d01 with an SSD201 or SSD202D
+- The [sbc2d06](http://linux-chenxing.org/infinity2/ido-sbc2d06/)
+- The [sbc2d70](http://linux-chenxing.org/infinity2/ido-sbc2d70/)
+
+This is not a all singing all dancing OS image for these things.
+This is meant to be something that builds a complete working set
+of binaries that you can work from.
+
 ## Flashing a blank module
 
 - You need to flash at least the CIS blob, the IPL blob and the u-boot SPL.

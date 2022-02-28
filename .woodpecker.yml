@@ -12,6 +12,13 @@ pipeline:
       - docker build -t idosom_buildbot .
       - chmod -R o+rw ./
 
+# Setup secrets
+  install_secrets:
+    image: idosom_buildbot
+    secrets: [tftp_ssh_key]
+    commands:
+      - mkdir ./secrets/ && echo "$SSH_KEY" > ./secrets/tftp_ssh_key && chmod 0600 ./secrets/tftp_ssh_key
+
 # Boot strap
   bootstrap:
     image: idosom_buildbot

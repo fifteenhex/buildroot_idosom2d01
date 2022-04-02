@@ -13,6 +13,7 @@ BR2_GCC_ENABLE_LTO=y
 # BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW is not set
 BR2_SYSTEM_DHCP="eth0"
 BR2_ROOTFS_USERS_TABLES="$(BR2_EXTERNAL_IDOSOM2D01_PATH)/users"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_IDOSOM2D01_PATH)/board/wirelesstag/idosom2d01/overlay/"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="support/scripts/genimage.sh"
 BR2_ROOTFS_POST_SCRIPT_ARGS="-c $(BR2_EXTERNAL_IDOSOM2D01_PATH)/board/wirelesstag/idosom2d01/genimage.cfg"
 BR2_LINUX_KERNEL=y
@@ -23,7 +24,8 @@ BR2_LINUX_KERNEL_USE_CUSTOM_CONFIG=y
 BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(BR2_EXTERNAL_IDOSOM2D01_PATH)/board/wirelesstag/idosom2d01/linux.config"
 BR2_LINUX_KERNEL_XZ=y
 BR2_LINUX_KERNEL_DTS_SUPPORT=y
-BR2_LINUX_KERNEL_INTREE_DTS_NAME="mstar-infinity2m-ssd201-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-sbc2d70 mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w"
+BR2_LINUX_KERNEL_INTREE_DTS_NAME="mstar-infinity2m-ssd201-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-wirelesstag-ido-som2d01 mstar-infinity2m-ssd202d-sbc2d70 mstar-infinity2m-ssd202d-wirelesstag-ido-sbc2d06-v1b-22w mstar-infinity2m-ssd202d-sbc2d86"
+BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_IDOSOM2D01_PATH)/board/wirelesstag/idosom2d01/busybox.frag"
 BR2_PACKAGE_ALSA_UTILS=y
 # BR2_PACKAGE_ALSA_UTILS_ALSACTL is not set
 BR2_PACKAGE_MTD=y

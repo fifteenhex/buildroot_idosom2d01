@@ -68,25 +68,46 @@
 				algo = "sha1";
 			};
 		};
+		fdt-sbc2d86 {
+			data = /incbin/("../../images/mstar-infinity2m-ssd202d-sbc2d86.dtb");
+			type = "flat_dt";
+			arch = "arm";
+			compression = "none";
+			hash-1 {
+				algo = "crc32";
+			};
+			hash-2 {
+				algo = "sha1";
+			};
+		};
 	};
 
 	configurations {
 		default = "ssd201-som2d01";
 		ssd201-som2d01 {
+			description = "SOM2D01 with SSD201";
 			kernel = "kernel-0";
 			fdt = "fdt-0";
 		};
 		ssd202d-som2d01 {
+			description = "SOM2D01 with SSD202D";
 			kernel = "kernel-0";
 			fdt = "fdt-1";
 		};
 		ssd202d-sbc2d70 {
+			description = "SOM2D01 with SSD202D on sbc2d70";
 			kernel = "kernel-0";
 			fdt = "fdt-2";
 		};
 		ssd202d-sbc2d06 {
+			description = "SOM2D01 with SSD202D on sbc2d06";
 			kernel = "kernel-0";
 			fdt = "fdt-3";
+		};
+		ssd202d-sbc2d86 {
+			description = "sbc2d86 with SSD202D";
+			kernel = "kernel-0";
+			fdt = "fdt-sbc2d86";
 		};
 	};
 };

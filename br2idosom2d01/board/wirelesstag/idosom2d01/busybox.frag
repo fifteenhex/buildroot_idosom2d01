@@ -1,0 +1,6 @@
+#Disble FTP, enable the hacky https
+CONFIG_FEATURE_WGET_FTP=n
+CONFIG_FEATURE_WGET_HTTPS=y
+
+#Unused stuff
+CONFIG_FEATURE_HWIB=n

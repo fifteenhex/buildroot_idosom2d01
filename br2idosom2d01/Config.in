@@ -1,0 +1,12 @@
+config BR2_IDOSOM2D01
+	bool "idosom2d01"
+	select BR2_CHENXING
+	select BR2_LINUX_KERNEL
+
+config BR2_IDOSOM2D01_MAIN
+	bool "idosom2d01 main"
+	select BR2_IDOSOM2D01
+
+config BR2_IDOSOM2D01_RESCUE
+	bool "idosom2d01 rescue"
+	select BR2_IDOSOM2D01

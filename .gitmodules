@@ -13,3 +13,6 @@
 [submodule "br2chenxing"]
 	path = br2chenxing
 	url = https://github.com/linux-chenxing/br2chenxing.git
+[submodule "br2dgppkg"]
+	path = br2dgppkg
+	url = https://github.com/fifteenhex/br2dgppkg.git

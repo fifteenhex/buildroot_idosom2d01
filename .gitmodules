@@ -16,3 +16,6 @@
 [submodule "br2dgppkg"]
 	path = br2dgppkg
 	url = https://github.com/fifteenhex/br2dgppkg.git
+[submodule "br2directfb2"]
+	path = br2directfb2
+	url = git@github.com:fifteenhex/br2directfb2.git
